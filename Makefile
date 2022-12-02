@@ -1,10 +1,10 @@
 CC=clang
-CFLAGS=-g
+CFLAGS=-g -Wall
 LIBS=-lm
 
 HEADERS=$(wildcard src/*.h)
 
-DAY=01b
+DAY=02b
 
 .PHONY: solution
 
