@@ -57,13 +57,14 @@ main(i32 NumArgs, char *Args[])
         if(Lines[I].Length > 0)
         {
             Calories += ToInt(Lines[I]);
+        }
+        else
+        {
             if(Calories > MaxCalories)
             {
                 MaxCalories = Calories;
             }
-        }
-        else
-        {
+
             Calories = 0;
         }
     }
