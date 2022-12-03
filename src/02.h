@@ -6,6 +6,9 @@
 /*                                                 */
 /***************************************************/
 
+#ifndef D02_H_
+#define D02_H_
+
 enum rps
 {
     ROCK,
@@ -97,4 +100,6 @@ ReverseRPS(result Wanted, rps Against)
         return (rps)Move;
     }
 }
+
+#endif /* end of include guard: D02_H_ */
 
