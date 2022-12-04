@@ -4,7 +4,7 @@ LIBS=-lm
 
 HEADERS=$(wildcard src/*.h)
 
-DAY=03b
+DAY=04b
 
 .PHONY: solution
 
