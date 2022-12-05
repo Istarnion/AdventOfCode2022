@@ -16,8 +16,7 @@
 #include <memory.h>
 
 typedef int8_t i8;
-typedef int16_t i16;
-typedef int32_t i32;
+typedef int16_t i16; typedef int32_t i32;
 typedef int64_t i64;
 typedef uint8_t u8;
 typedef uint16_t u16;
@@ -110,6 +109,29 @@ ReadLinesFromFile(const char *Filename, i32 *LineCount)
     }
 
     return Lines;
+}
+
+static void
+Consume(str *String, const char *Expected)
+{
+    i32 ExpectedLength = strnlen(Expected, String->Length);
+    for(i32 I=0; I<ExpectedLength; ++I)
+    {
+        Assert(String->Buffer[I] == Expected[I], "String did not match expected");
+    }
+
+    String->Buffer += ExpectedLength;
+    String->Length -= ExpectedLength;
+}
+
+static i32
+ConsumeInt(str *String)
+{
+    char *EndPtr;
+    i32 Result = strtol(String->Buffer, &EndPtr, 10);
+    String->Length -= (EndPtr - String->Buffer);
+    String->Buffer = EndPtr;
+    return Result;
 }
 
 #endif /* end of include guard: COMMON_H_ */
