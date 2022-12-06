@@ -25,6 +25,9 @@ typedef uint64_t u64;
 typedef float r32;
 typedef double r64;
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-function"
+
 #define CRASH (*((volatile int *)0) = 1)
 #define Assert(stmt, msg) if(!(stmt)) { fprintf(stderr, "%s (%d) - Assertion Failed: %s\n", __FILE__, __LINE__, msg); CRASH; }
 #define UNREACHABLE do { fprintf(stderr, "%s (%d) - Unreachable code reached\n", __FILE__, __LINE__); CRASH; } while(0)
@@ -133,6 +136,8 @@ ConsumeInt(str *String)
     String->Buffer = EndPtr;
     return Result;
 }
+
+#pragma clang diagnostic pop
 
 #endif /* end of include guard: COMMON_H_ */
 
