@@ -28,23 +28,18 @@ static inline bool
 AllUnique(char *Start, i32 N)
 {
     char Count[256] = { 0 };
-    i32 Min = 256;
-    i32 Max = 0;
+    bool Result = true;
     for(i32 I=0; I<N; ++I)
     {
         i32 C = (i32)Start[I];
-        if(C < Min) Min = C;
-        if(C > Max) Max = C;
-        Count[C]++;
-    }
-
-    bool Result = true;
-    for(i32 I=Min; I<=Max; ++I)
-    {
-        if(Count[I] > 1)
+        if(Count[C])
         {
             Result = false;
             break;
+        }
+        else
+        {
+            Count[C]++;
         }
     }
 
