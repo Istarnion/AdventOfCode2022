@@ -16,7 +16,8 @@
 #include <memory.h>
 
 typedef int8_t i8;
-typedef int16_t i16; typedef int32_t i32;
+typedef int16_t i16;
+typedef int32_t i32;
 typedef int64_t i64;
 typedef uint8_t u8;
 typedef uint16_t u16;
@@ -134,6 +135,70 @@ ConsumeInt(str *String)
     i32 Result = strtol(String->Buffer, &EndPtr, 10);
     String->Length -= (EndPtr - String->Buffer);
     String->Buffer = EndPtr;
+    return Result;
+}
+
+static bool
+StartsWith(const str &String, const char *Prefix)
+{
+    bool Result = true;
+    i32 PrefixLength = strnlen(Prefix, String.Length);
+    for(i32 I=0; I<PrefixLength; ++I)
+    {
+        if(String.Buffer[I] != Prefix[I])
+        {
+            Result = false;
+            break;
+        }
+    }
+
+    return Result;
+}
+
+static bool
+Equals(const str &A, const str &B)
+{
+    bool Result = true;
+    if(A.Length == B.Length)
+    {
+        for(i32 I=0; I<A.Length; ++I)
+        {
+            if(A.Buffer[I] != B.Buffer[I])
+            {
+                Result = false;
+                break;
+            }
+        }
+    }
+    else
+    {
+        Result = false;
+    }
+
+    return Result;
+}
+
+static bool
+Equals(const str &String, const char *Other)
+{
+    bool Result = true;
+    i32 OtherLength = strnlen(Other, String.Length);
+    if(OtherLength == String.Length)
+    {
+        for(i32 I=0; I<OtherLength; ++I)
+        {
+            if(String.Buffer[I] != Other[I])
+            {
+                Result = false;
+                break;
+            }
+        }
+    }
+    else
+    {
+        Result = false;
+    }
+
     return Result;
 }
 
