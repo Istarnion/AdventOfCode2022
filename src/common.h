@@ -33,6 +33,14 @@ typedef double r64;
 #define Assert(stmt, msg) if(!(stmt)) { fprintf(stderr, "%s (%d) - Assertion Failed: %s\n", __FILE__, __LINE__, msg); CRASH; }
 #define UNREACHABLE do { fprintf(stderr, "%s (%d) - Unreachable code reached\n", __FILE__, __LINE__); CRASH; } while(0)
 
+static inline i32
+Sign(i32 I)
+{
+    if(I < 0) return -1;
+    if(I > 0) return 1;
+    return 0;
+}
+
 struct str
 {
     char *Buffer;
