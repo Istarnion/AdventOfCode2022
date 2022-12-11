@@ -1,10 +1,10 @@
 CC=clang
-CFLAGS=-g -Wall -Wno-unused-function
+CFLAGS=-std=c++11 -g -Wall -Wno-unused-function
 LIBS=-lm
 
 HEADERS=$(wildcard src/*.h)
 
-DAY=10b
+DAY=11b
 
 .PHONY: solution
 
