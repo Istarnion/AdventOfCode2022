@@ -292,24 +292,10 @@ main(i32 NumArgs, char *Args[])
                     break;
             }
 
-
             // Move tail
-            if(abs(HX - TX) > 1)
+            if(abs(HX - TX) > 1 || abs(HY - TY) > 1)
             {
-                if(abs(HY - TY) > 0)
-                {
-                    TY += Sign(HY - TY);
-                }
-
                 TX += Sign(HX - TX);
-            }
-            else if(abs(HY - TY) > 1)
-            {
-                if(abs(HX - TX) > 0)
-                {
-                    TX += Sign(HX - TX);
-                }
-
                 TY += Sign(HY - TY);
             }
 

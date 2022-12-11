@@ -491,22 +491,9 @@ main(i32 NumArgs, char *Args[])
 
             for(i32 T=1; T<10; ++T)
             {
-                if(abs(Rope[T-1].X - Rope[T].X) > 1)
+                if(abs(Rope[T-1].X - Rope[T].X) > 1 || abs(Rope[T-1].Y - Rope[T].Y) > 1)
                 {
-                    if(abs(Rope[T-1].Y - Rope[T].Y) > 0)
-                    {
-                        Rope[T].Y += Sign(Rope[T-1].Y - Rope[T].Y);
-                    }
-
                     Rope[T].X += Sign(Rope[T-1].X - Rope[T].X);
-                }
-                else if(abs(Rope[T-1].Y - Rope[T].Y) > 1)
-                {
-                    if(abs(Rope[T-1].X - Rope[T].X) > 0)
-                    {
-                        Rope[T].X += Sign(Rope[T-1].X - Rope[T].X);
-                    }
-
                     Rope[T].Y += Sign(Rope[T-1].Y - Rope[T].Y);
                 }
 
