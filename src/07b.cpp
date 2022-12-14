@@ -31,6 +31,9 @@ Find the smallest directory that, if deleted, would free up enough space on the 
 int
 main(i32 NumArgs, char *Args[])
 {
+    timing Timing;
+    TimingStart(&Timing);
+
     i32 LineCount;
     str *Lines = ReadLinesFromFile("07.input", &LineCount);
 
@@ -39,6 +42,8 @@ main(i32 NumArgs, char *Args[])
     FileSystem.FileCount = 0;
 
     ParseTree(LineCount, Lines, &FileSystem);
+    TimingPostParsing(&Timing);
+
     CalcDirSize(FileSystem.Root);
 
     i32 FileSystemSize = 70000000;
@@ -59,6 +64,7 @@ main(i32 NumArgs, char *Args[])
         }
     }
 
+    TimingEnd(&Timing);
     printf("Need to free at least %d, smalles dir large enough is %d\n", RequiredToFree, SmallestLargeEnoughDir);
 
     return 0;

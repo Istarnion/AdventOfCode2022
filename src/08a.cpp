@@ -44,6 +44,9 @@ Consider your map; how many trees are visible from outside the grid?
 int
 main(i32 NumArgs, char *Args[])
 {
+    timing Timing;
+    TimingStart(&Timing);
+
     i32 Height;
     str *Lines = ReadLinesFromFile("08.input", &Height);
     i32 Width = Lines[0].Length;
@@ -96,6 +99,7 @@ main(i32 NumArgs, char *Args[])
         }
     }
 
+    TimingEnd(&Timing);
     printf("The number of visible trees is %d\n", Sum);
 
     return 0;

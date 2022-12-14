@@ -116,6 +116,9 @@ Solve(file *File)
 int
 main(i32 NumArgs, char *Args[])
 {
+    timing Timing;
+    TimingStart(&Timing);
+
     i32 LineCount;
     str *Lines = ReadLinesFromFile("07.input", &LineCount);
 
@@ -125,9 +128,13 @@ main(i32 NumArgs, char *Args[])
 
     ParseTree(LineCount, Lines, &FileSystem);
 
+    TimingPostParsing(&Timing);
+
     CalcDirSize(FileSystem.Root);
 
     i32 Sum = Solve(FileSystem.Root);
+
+    TimingEnd(&Timing);
     printf("Sum is %d\n", Sum);
 
     return 0;

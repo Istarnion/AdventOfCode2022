@@ -44,6 +44,9 @@ What is the fewest steps required to move from your current position to the loca
 int
 main(i32 NumArgs, char *Args[])
 {
+    timing Timing;
+    TimingStart(&Timing);
+
     i32 LineCount;
     str *Lines = ReadLinesFromFile("12.input", &LineCount);
 
@@ -98,6 +101,8 @@ main(i32 NumArgs, char *Args[])
             }
         }
     }
+
+    TimingPostParsing(&Timing);
 
     i32 OpenListSize = 1;
     cell **OpenList = (cell **)calloc(1024, sizeof(cell));
@@ -173,6 +178,8 @@ main(i32 NumArgs, char *Args[])
 
         Current->Closed = true;
     }
+
+    TimingEnd(&Timing);
 
     return 0;
 }

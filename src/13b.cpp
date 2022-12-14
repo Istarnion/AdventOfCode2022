@@ -74,6 +74,9 @@ Sort(i32 Count, str *List, pool *Pool)
 int
 main(i32 NumArgs, char *Args[])
 {
+    timing Timing;
+    TimingStart(&Timing);
+
     i32 LineCount;
     str *Lines = ReadLinesFromFile("13.input", &LineCount);
 
@@ -116,6 +119,7 @@ main(i32 NumArgs, char *Args[])
     }
 
     i32 DistressCode = IndexA * IndexB;
+    TimingEnd(&Timing);
     printf("Distress code is %d x %d = %d\n", IndexA, IndexB, DistressCode);
 
     return 0;

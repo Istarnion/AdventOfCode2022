@@ -26,6 +26,9 @@ Following the Elf's instructions for the second column, what would your total sc
 int
 main(i32 NumArgs, char *Args[])
 {
+    timing Timing;
+    TimingStart(&Timing);
+
     i32 LineCount;
     str *Lines = ReadLinesFromFile("02.input", &LineCount);
 
@@ -55,6 +58,8 @@ main(i32 NumArgs, char *Args[])
             Score += Round;
         }
     }
+
+    TimingEnd(&Timing);
 
     printf("The total score is %d\n", Score);
 

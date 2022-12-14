@@ -50,6 +50,9 @@ Using your scan, simulate the falling sand until the source of the sand becomes 
 int
 main(i32 NumArgs, char *Args[])
 {
+    timing Timing;
+    TimingStart(&Timing);
+
     i32 LineCount;
     str *Lines = ReadLinesFromFile("14.input", &LineCount);
 
@@ -83,17 +86,7 @@ main(i32 NumArgs, char *Args[])
         }
     }
 
-    for(i32 Y=0; Y<Height; ++Y)
-    {
-        for(i32 X=4*((MaxX+1) - MinX); X<(Width-4*((MaxX+1) - MinX)); ++X)
-        {
-            putchar(Map[X + Y * Width]);
-        }
-
-        putchar('\n');
-    }
-
-    putchar('\n');
+    TimingPostParsing(&Timing);
 
     i32 SettleCount = 0;
     i32 Running = true;
@@ -143,16 +136,7 @@ main(i32 NumArgs, char *Args[])
         Running = !(X == 500 + XOffset && Y == 0);
     }
 
-    for(i32 Y=0; Y<Height; ++Y)
-    {
-        for(i32 X=4*((MaxX+1) - MinX); X<(Width-4*((MaxX+1) - MinX)); ++X)
-        {
-            putchar(Map[X + Y * Width]);
-        }
-
-        putchar('\n');
-    }
-
+    TimingEnd(&Timing);
     printf("%d units of sand settled\n", SettleCount);
 
     return 0;

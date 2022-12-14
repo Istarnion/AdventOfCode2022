@@ -49,6 +49,9 @@ AllUnique(char *Start, i32 N)
 int
 main(i32 NumArgs, char *Args[])
 {
+    timing Timing;
+    TimingStart(&Timing);
+
     str Input = ReadEntireFile("06.input");
 
     i32 Count = 0;
@@ -60,6 +63,8 @@ main(i32 NumArgs, char *Args[])
             break;
         }
     }
+
+    TimingEnd(&Timing);
 
     printf("%d characters needs to be processed before the start-of-packet is detected\n", Count);
 

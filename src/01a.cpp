@@ -46,6 +46,9 @@ Find the Elf carrying the most Calories. How many total Calories is that Elf car
 int
 main(i32 NumArgs, char *Args[])
 {
+    timing Timing;
+    TimingStart(&Timing);
+
     i32 LineCount;
     str *Lines = ReadLinesFromFile("01.input", &LineCount);
 
@@ -68,6 +71,8 @@ main(i32 NumArgs, char *Args[])
             Calories = 0;
         }
     }
+
+    TimingEnd(&Timing);
 
     printf("Elf with the most calories carries %d calories)\n", MaxCalories);
 

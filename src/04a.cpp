@@ -57,6 +57,9 @@ In how many assignment pairs does one range fully contain the other?
 int
 main(i32 NumArgs, char *Args[])
 {
+    timing Timing;
+    TimingStart(&Timing);
+
     i32 LineCount;
     str *Lines = ReadLinesFromFile("04.input", &LineCount);
 
@@ -69,6 +72,8 @@ main(i32 NumArgs, char *Args[])
         Count += ((MinA >= MinB && MaxA <= MaxB) ||
                   (MinB >= MinA && MaxB <= MaxA));
     }
+
+    TimingEnd(&Timing);
 
     printf("The number of overlapping pairs is %d\n", Count);
 

@@ -27,6 +27,9 @@ In how many assignment pairs do the ranges overlap?
 int
 main(i32 NumArgs, char *Args[])
 {
+    timing Timing;
+    TimingStart(&Timing);
+
     i32 LineCount;
     str *Lines = ReadLinesFromFile("04.input", &LineCount);
 
@@ -38,6 +41,8 @@ main(i32 NumArgs, char *Args[])
 
         Count += !(MaxA < MinB || MinA > MaxB);
     }
+
+    TimingEnd(&Timing);
 
     printf("The number of overlapping pairs is %d\n", Count);
 

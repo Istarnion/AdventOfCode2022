@@ -69,6 +69,9 @@ After the rearrangement procedure completes, what crate ends up on top of each s
 int
 main(i32 NumArgs, char *Args[])
 {
+    timing Timing;
+    TimingStart(&Timing);
+
     i32 LineCount;
     str *Lines = ReadLinesFromFile("05.input", &LineCount);
 
@@ -106,8 +109,7 @@ main(i32 NumArgs, char *Args[])
         }
     }
 
-    puts("Initial:");
-    PrintStacks(Stacks, StackCount);
+    TimingPostParsing(&Timing);
 
     // Run instructions
     for(i32 I=FirstInstructionLine; I<LineCount; ++I)
@@ -121,14 +123,13 @@ main(i32 NumArgs, char *Args[])
         }
     }
 
-    puts("After:");
-    PrintStacks(Stacks, StackCount);
-
     char Output[128];
     for(i32 I=0; I<StackCount; ++I)
     {
         Output[I] = Peek(Stacks + I);
     }
+
+    TimingEnd(&Timing);
 
     printf("The stack tops are %.*s\n", StackCount, Output);
 

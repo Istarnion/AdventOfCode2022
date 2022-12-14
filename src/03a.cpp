@@ -47,6 +47,9 @@ Find the item type that appears in both compartments of each rucksack. What is t
 int
 main(i32 NumArgs, char *Args[])
 {
+    timing Timing;
+    TimingStart(&Timing);
+
     i32 LineCount;
     str *Lines = ReadLinesFromFile("03.input", &LineCount);
 
@@ -75,6 +78,8 @@ main(i32 NumArgs, char *Args[])
             Sum += Priority(ItemType);
         }
     }
+
+    TimingEnd(&Timing);
 
     printf("The sum is %d\n", Sum);
 

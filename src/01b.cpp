@@ -21,6 +21,8 @@ Find the top three Elves carrying the most Calories. How many Calories are those
 int
 main(i32 NumArgs, char *Args[])
 {
+    timing Timing;
+    TimingStart(&Timing);
     i32 LineCount;
     str *Lines = ReadLinesFromFile("01.input", &LineCount);
 
@@ -55,6 +57,9 @@ main(i32 NumArgs, char *Args[])
     }
 
     i32 Sum = MaxCalories[0] + MaxCalories[1] + MaxCalories[2];
+
+    TimingEnd(&Timing);
+
     printf("The top 3 elves carry a combined %d calories\n", Sum);
 
     return 0;

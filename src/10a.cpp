@@ -206,6 +206,9 @@ Find the signal strength during the 20th, 60th, 100th, 140th, 180th, and 220th c
 int
 main(i32 NumArgs, char *Args[])
 {
+    timing Timing;
+    TimingStart(&Timing);
+
     i32 LineCount;
     str *Lines = ReadLinesFromFile("10.input", &LineCount);
 
@@ -244,6 +247,7 @@ main(i32 NumArgs, char *Args[])
         X += N;
     }
 
+    TimingEnd(&Timing);
     printf("The combined signal strength is %d\n", SignalStrength);
 
     return 0;

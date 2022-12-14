@@ -3,6 +3,9 @@
 int
 main(i32 NumArgs, char *Args[])
 {
+    timing Timing;
+    TimingStart(&Timing);
+
     i32 LineCount;
     str *Lines = ReadLinesFromFile("08.input", &LineCount);
 
@@ -76,6 +79,8 @@ main(i32 NumArgs, char *Args[])
     {
         VisibleTrees += (i32)Set[I];
     }
+
+    TimingEnd(&Timing);
 
     printf("%d\n", VisibleTrees);
 

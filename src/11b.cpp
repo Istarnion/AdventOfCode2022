@@ -98,6 +98,9 @@ Worry levels are no longer divided by three after each item is inspected; you'll
 int
 main(i32 NumArgs, char *Args[])
 {
+    timing Timing;
+    TimingStart(&Timing);
+
     i32 LineCount;
     str *Lines = ReadLinesFromFile("11.input", &LineCount);
 
@@ -105,6 +108,7 @@ main(i32 NumArgs, char *Args[])
     memset(Monkeys, 0, sizeof(Monkeys));
 
     ParseMonkeys(Lines, 8, Monkeys);
+    TimingPostParsing(&Timing);
 
     u64 Supermod = 1;
     for(i32 I=0; I<8; ++I)
@@ -172,6 +176,7 @@ main(i32 NumArgs, char *Args[])
     }
 
     u64 MonkeyBusiness = Max[0] * Max[1];
+    TimingEnd(&Timing);
     printf("Monkey business is %llu * %llu = %llu\n", Max[0], Max[1], MonkeyBusiness);
 
     return 0;

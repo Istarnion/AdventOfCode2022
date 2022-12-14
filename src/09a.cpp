@@ -259,6 +259,9 @@ Simulate your complete hypothetical series of motions. How many positions does t
 int
 main(i32 NumArgs, char *Args[])
 {
+    timing Timing;
+    TimingStart(&Timing);
+
     i32 LineCount;
     str *Lines = ReadLinesFromFile("09.input", &LineCount);
 
@@ -310,6 +313,7 @@ main(i32 NumArgs, char *Args[])
         }
     }
 
+    TimingEnd(&Timing);
     printf("Tail visited %d positions\n", PositionCount);
 
     return 0;

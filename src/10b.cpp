@@ -138,6 +138,9 @@ Render the image given by your program. What eight capital letters appear on you
 int
 main(i32 NumArgs, char *Args[])
 {
+    timing Timing;
+    TimingStart(&Timing);
+
     i32 LineCount;
     str *Lines = ReadLinesFromFile("10.input", &LineCount);
 
@@ -178,6 +181,7 @@ main(i32 NumArgs, char *Args[])
         X += N;
     }
 
+    TimingEnd(&Timing);
     for(i32 Row=0; Row<6; ++Row)
     {
         for(i32 Col=0; Col<40; ++Col)

@@ -14,6 +14,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <memory.h>
+#include <time.h>
 
 typedef int8_t i8;
 typedef int16_t i16;
@@ -32,6 +33,47 @@ typedef double r64;
 #define CRASH (*((volatile int *)0) = 1)
 #define Assert(stmt, msg) if(!(stmt)) { fprintf(stderr, "%s (%d) - Assertion Failed: %s\n", __FILE__, __LINE__, msg); CRASH; }
 #define UNREACHABLE do { fprintf(stderr, "%s (%d) - Unreachable code reached\n", __FILE__, __LINE__); CRASH; } while(0)
+
+struct timing
+{
+    timespec Start;
+    timespec PastParsing;
+};
+
+static inline void
+TimingStart(timing *Timing)
+{
+    clock_gettime(CLOCK_MONOTONIC, &Timing->Start);
+    memset(&Timing->PastParsing, 0, sizeof(timespec));
+}
+
+static inline void
+TimingPostParsing(timing *Timing)
+{
+    clock_gettime(CLOCK_MONOTONIC, &Timing->PastParsing);
+}
+
+static inline void
+TimingEnd(timing *Timing)
+{
+    timespec Now;
+    clock_gettime(CLOCK_MONOTONIC, &Now);
+
+    u64 Start = Timing->Start.tv_sec * 1000000000llu + Timing->Start.tv_nsec;
+    u64 PastParse = Timing->PastParsing.tv_sec * 1000000000llu + Timing->PastParsing.tv_nsec;
+    u64 End = Now.tv_sec * 1000000000llu + Now.tv_nsec;
+
+    if(Timing->PastParsing.tv_sec != 0 || Timing->PastParsing.tv_nsec != 0)
+    {
+        u64 ParsingTime = (PastParse - Start) / 1000llu;
+        u64 SolveTime = (End - PastParse) / 1000llu;
+        printf("Parsing: %10llu µs\n", ParsingTime);
+        printf("Solve:   %10llu µs\n", SolveTime);
+    }
+
+    u64 TotalTime = (End - Start) / 1000llu;
+    printf("Total:   %10llu µs\n", TotalTime);
+}
 
 static inline i32
 Sign(i32 I)

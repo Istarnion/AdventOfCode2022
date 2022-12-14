@@ -125,6 +125,9 @@ Determine which pairs of packets are already in the right order. What is the sum
 int
 main(i32 NumArgs, char *Args[])
 {
+    timing Timing;
+    TimingStart(&Timing);
+
     i32 LineCount;
     str *Lines = ReadLinesFromFile("13.input", &LineCount);
 
@@ -146,6 +149,7 @@ main(i32 NumArgs, char *Args[])
         }
     }
 
+    TimingEnd(&Timing);
     printf("Sum of sorted indices is %d\n", Sum);
 
     return 0;

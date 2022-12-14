@@ -231,6 +231,9 @@ Figure out which monkeys to chase by counting how many items they inspect over 2
 int
 main(i32 NumArgs, char *Args[])
 {
+    timing Timing;
+    TimingStart(&Timing);
+
     i32 LineCount;
     str *Lines = ReadLinesFromFile("11.input", &LineCount);
 
@@ -238,6 +241,7 @@ main(i32 NumArgs, char *Args[])
     memset(Monkeys, 0, sizeof(Monkeys));
 
     ParseMonkeys(Lines, 8, Monkeys);
+    TimingPostParsing(&Timing);
 
     for(i32 Round=0; Round<20; ++Round)
     {
@@ -298,6 +302,8 @@ main(i32 NumArgs, char *Args[])
     }
 
     i32 MonkeyBusiness = Max[0] * Max[1];
+
+    TimingEnd(&Timing);
     printf("Monkey business is %d\n", MonkeyBusiness);
 
     return 0;

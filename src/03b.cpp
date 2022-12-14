@@ -40,6 +40,9 @@ Find the item type that corresponds to the badges of each three-Elf group. What 
 int
 main(i32 NumArgs, char *Args[])
 {
+    timing Timing;
+    TimingStart(&Timing);
+
     i32 LineCount;
     str *Lines = ReadLinesFromFile("03.input", &LineCount);
 
@@ -79,6 +82,8 @@ main(i32 NumArgs, char *Args[])
             }
         }
     }
+
+    TimingEnd(&Timing);
 
     printf("The sum is %d\n", Sum);
 

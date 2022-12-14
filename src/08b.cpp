@@ -52,6 +52,9 @@ Consider each tree on your map. What is the highest scenic score possible for an
 int
 main(i32 NumArgs, char *Args[])
 {
+    timing Timing;
+    TimingStart(&Timing);
+
     i32 Height;
     str *Lines = ReadLinesFromFile("08.input", &Height);
     i32 Width = Lines[0].Length;
@@ -111,6 +114,7 @@ main(i32 NumArgs, char *Args[])
         }
     }
 
+    TimingEnd(&Timing);
     printf("The maximum scenic score is %d\n", ScenicScore);
 
     return 0;
