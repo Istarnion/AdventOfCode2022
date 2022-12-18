@@ -165,6 +165,16 @@ ReadLinesFromFile(const char *Filename, i32 *LineCount)
     return Lines;
 }
 
+static inline char
+Advance(str *String)
+{
+    Assert(String->Length > 0, "Moving past end of string");
+    char Result = String->Buffer[0];
+    String->Buffer++;
+    String->Length--;
+    return Result;
+}
+
 static void
 Consume(str *String, const char *Expected)
 {
